@@ -30,25 +30,23 @@ myApp.controller('uploadController', function ($scope,$rootScope) {
 
         // ADD LISTENERS.
         var objXhr = new XMLHttpRequest();
-        objXhr.addEventListener("progress", updateProgress, false);
-        objXhr.addEventListener("load", transferComplete, false);
+       // objXhr.addEventListener("progress", updateProgress, false);
+       objXhr.addEventListener("load", transferComplete, false);
 
         // SEND FILE DETAILS TO THE API.
         objXhr.open("POST", "./api.php");
+
+        objXhr.upload.onprogress = function (e) {
+            if (e.lengthComputable) {
+                document.getElementById('progress').setAttribute('value', e.loaded);
+                document.getElementById('progress').setAttribute('max', e.total);
+            }
+        }
+
         objXhr.send(data);
          //console.log(e);
 
-    }
-
-    // UPDATE PROGRESS BAR.
-    function updateProgress(e) {
-        //if (e.lengthComputable) {
-            console.log(e.loaded);
-            console.log(e.total);
-            document.getElementById('pro').setAttribute('value', e.loaded);
-            document.getElementById('pro').setAttribute('max', e.total);
-       // }
-    }
+     }
 
     // CONFIRMATION.
     function transferComplete(e) {
@@ -58,9 +56,9 @@ myApp.controller('uploadController', function ($scope,$rootScope) {
         var imgSpan1='<span class="img"><img src="uploads/';
         var imgSpan2='"></span>';
         for (var i = response.files.length - 1; i >= 0; i--) {
-                var img=imgSpan1+response.files[i]+imgSpan2;
-                $(".imageWrap").append(img);
+            var img=imgSpan1+response.files[i]+imgSpan2;
+            $(".imageWrap").append(img);
         }
         document.getElementById('status').innerHTML=response.message;
-   }
+    }
 });
