@@ -42,11 +42,12 @@ myApp.controller('uploadController', function ($scope,$rootScope) {
 
     // UPDATE PROGRESS BAR.
     function updateProgress(e) {
-        if (e.lengthComputable) {
-            // document.getElementById('pro').setAttribute('value', e.loaded);
-            // document.getElementById('pro').setAttribute('max', e.total);
-            alert(e.loaded);
-        }
+        //if (e.lengthComputable) {
+            console.log(e.loaded);
+            console.log(e.total);
+            document.getElementById('pro').setAttribute('value', e.loaded);
+            document.getElementById('pro').setAttribute('max', e.total);
+       // }
     }
 
     // CONFIRMATION.
