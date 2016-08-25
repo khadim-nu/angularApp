@@ -1,8 +1,7 @@
 var myApp = angular.module('uploadApp', []);
 
 myApp.controller('uploadController', function ($scope,$rootScope) {
-    $rootScope.fileNames=[
-    ];
+
 
     // GET THE FILE INFORMATION.
     $scope.getFileDetails = function (e) {
@@ -42,11 +41,14 @@ myApp.controller('uploadController', function ($scope,$rootScope) {
                 document.getElementById('progress').setAttribute('max', e.total);
             }
         }
+        if($scope.files.length>0){
+            objXhr.send(data);
+        }
+        else{
+            alert('Please attach a file.');
+        }
 
-        objXhr.send(data);
-         //console.log(e);
-
-     }
+    }
 
     // CONFIRMATION.
     function transferComplete(e) {
