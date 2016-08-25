@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="assets/style.css">
+  <title>File Uploading</title>
+  <script src="assets/angular.min.js"></script>
+  <script src="assets/jquery-latest.min.js"></script>
+  <script src="assets/script.js"></script>
+</head>
+
+<body ng-app="uploadApp">
+<center>
+   <div class="uploadWraper">
+      <h2>Multiple File Uploading in Angular JS</h2>
+       <div id="upload-inputs" ng-controller="uploadController">
+           <input class="upload-input" type="file" id="file" name="file" multiple onchange="angular.element(this).scope().getFileDetails(this)" />
+           <input class="upload-button" type="button" ng-click="uploadFiles()" value="Upload" />
+       </div>
+       <hr>
+    </div>
+
+    <p id="status"></p>
+    <div class="showFiles">
+      <span class="imageWrap">
+      </span>
+    </div>
+</center>
+</body>
+</html>
